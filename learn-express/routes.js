@@ -46,6 +46,7 @@ router.patch("/posts/:id", async (req, res) => {
 
 		await post.save()
 		res.send(post)
+		
 	} catch {
 		res.status(404)
 		res.send({ error: "Post doesn't exist!" })
