@@ -1,67 +1,24 @@
 const express = require("express")
 const router = express.Router()
+const postControllers = require('./controllers/postControllers')
 
 // import our model
 const Post = require("./models/Post")
 
 // Get all posts
-router.get("/posts", async (req, res) => {
-	const posts = await Post.find()
-	res.send(posts)
-})
+router.get("/posts", postControllers.post_get_all)
 
 // create post
-router.post("/posts", async (req, res) => {
-	const post = new Post({
-		title: req.body.title,
-		content: req.body.content,
-	})
-	await post.save()
-	res.send(post)
-})
+router.post("/posts", postControllers.post_create)
 
 // getting individual post
-router.get("/posts/:id", async (req, res) => {
-	try {
-		const post = await Post.findOne({ _id: req.params.id })
-		res.send(post)
-	} catch {
-		res.status(404)
-		res.send({ error: "Post doesn't exist!" })
-	}
-})
+router.get("/posts/:id", postControllers.post_get_one)
 
 // updating post
-router.patch("/posts/:id", async (req, res) => {
-	try {
-		const post = await Post.findOne({ _id: req.params.id })
-
-		if (req.body.title) {
-			post.title = req.body.title
-		}
-
-		if (req.body.content) {
-			post.content = req.body.content
-		}
-
-		await post.save()
-		res.send(post)
-		
-	} catch {
-		res.status(404)
-		res.send({ error: "Post doesn't exist!" })
-	}
-})
+router.patch("/posts/:id", postControllers.post_update)
 
 // delete post
-router.delete("/posts/:id", async (req, res) => {
-	try {
-		await Post.deleteOne({ _id: req.params.id })
-		res.status(204).send()
-	} catch {
-		res.status(404)
-		res.send({ error: "Post doesn't exist!" })
-	}
-})
+router.delete("/posts/:id", postControllers.post_delete)
+
 
 module.exports = router
