@@ -1,5 +1,5 @@
 // import Post model
-const Post = require("../models/Post")
+import Post from '../models/Post'
 
 const post_get_all = async (req, res) => {
 	const posts = await Post.find()
@@ -57,10 +57,4 @@ const post_delete = async (req, res) => {
 }
 
 
-module.exports = {
-	post_get_all,
-	post_create,
-	post_get_one,
-	post_update,
-	post_delete
-}
+export {post_get_all, post_create, post_get_one, post_update, post_delete}

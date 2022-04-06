@@ -1,25 +1,22 @@
-const express = require("express")
 import express from 'express'
-const {router} = express.Router()
-const {postControllers} = require('../controllers/postControllers')
+const router = express.Router()
 
-// import our model
-const Post = require("../models/Post");
+import {post_get_all, post_create, post_get_one, post_update, post_delete} from '../controllers/postControllers'
 
 // Get all posts
-router.get("/posts", postControllers.post_get_all)
+router.get("/posts", post_get_all)
 
 // create post
-router.post("/posts", postControllers.post_create)
+router.post("/posts", post_create)
 
 // getting individual post
-router.get("/posts/:id", postControllers.post_get_one)
+router.get("/posts/:id", post_get_one)
 
 // updating post
-router.patch("/posts/:id", postControllers.post_update)
+router.patch("/posts/:id", post_update)
 
 // delete post
-router.delete("/posts/:id", postControllers.post_delete)
+router.delete("/posts/:id", post_delete)
 
 
-module.exports = router
+export default router
