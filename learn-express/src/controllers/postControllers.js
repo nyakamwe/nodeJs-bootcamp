@@ -1,5 +1,4 @@
-
-// import our model
+// import Post model
 const Post = require("../models/Post")
 
 const post_get_all = async (req, res) => {

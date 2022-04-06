@@ -1,9 +1,10 @@
 const express = require("express")
-const router = express.Router()
-const postControllers = require('./controllers/postControllers')
+import express from 'express'
+const {router} = express.Router()
+const {postControllers} = require('../controllers/postControllers')
 
 // import our model
-const Post = require("./models/Post")
+const Post = require("../models/Post");
 
 // Get all posts
 router.get("/posts", postControllers.post_get_all)

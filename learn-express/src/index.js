@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express'
 
 require("dotenv").config();
 
@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 const port = process.env.PORT || 3000
 
 // getting routes
-const routes = require("./routes")
+const routes = require("./routes/PostRoutes")
 
 // Connect to MongoDB database
 const dbURI =`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@node-applications.fe4au.mongodb.net/node-tutorial?retryWrites=true&w=majority`
